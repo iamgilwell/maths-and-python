@@ -6,16 +6,28 @@ import getpass
 
 def register(emailAddress, *args):
     print(len(args))
-    match = re.match(
-        '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', emailAddress)
+    # password = ''
+    # password2 = ''
+    global password, password2
 
-    while match is None:
-        #
-        print("Your Email is {}".format(emailAddress),
-              "Is not a valid email, please try again")
-        emailAddress = input("Please Enter Your Email Address Again: ")
+    print(password)
+
+    while(password != password2):
+        print(password, password2)
+        print("The password are not the same, please try again")
+        password = getpass.getpass(prompt="Enter Password: ")
+        password2 = getpass.getpass(prompt="Confirm Password: ")
+    else:
         match = re.match(
             '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', emailAddress)
+
+        while match is None:
+            #
+            print("Your Email is {}".format(emailAddress),
+                  "Is not a valid email, please try again")
+            emailAddress = input("Please Enter Your Email Address Again: ")
+            match = re.match(
+                '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', emailAddress)
         # register(emailAddress, args)
   # print(args[2])
 
