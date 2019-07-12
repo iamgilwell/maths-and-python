@@ -1,6 +1,6 @@
 import re
 import getpass
-
+import psycopg2
 ''' A python CLI application to send email to specific individuals '''
 
 
@@ -35,3 +35,29 @@ password = getpass.getpass(prompt="Enter Password: ")
 password2 = getpass.getpass(prompt="Confirm Password: ")
 args = [first_name, second_name, password, password2]
 register(*args)
+
+
+try:
+    connection = psycopg2.connect(user="postgres",
+                                  password="",
+                                  host="127.0.0.1",
+                                  port="5432",
+                                  database="welcome")
+
+    cursor = connection.cursor()
+    # Print PostgreSQL Connection properties
+    print(connection.get_dsn_parameters(), "\n")
+
+    # Print PostgreSQL version
+    cursor.execute("SELECT version();")
+    record = cursor.fetchone()
+    print("You are connected to - ", record, "\n")
+
+except (Exception, psycopg2.Error) as error:
+    print("Error while connecting to PostgreSQL", error)
+finally:
+    # closing database connection.
+    if(connection):
+        cursor.close()
+        connection.close()
+        print("PostgreSQL connection is closed")

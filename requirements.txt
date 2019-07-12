@@ -1,0 +1,5 @@
+autopep8==1.4.4
+pkg-resources==0.0.0
+psycopg2==2.8.3
+pycodestyle==2.5.0
+Pympler==0.7
