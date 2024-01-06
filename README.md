@@ -1,2 +1,2 @@
-# the21st
-Python CLI Email module, register and send users information via CLI
+# Maths and Python
+Python Advanced Maths tutorials
